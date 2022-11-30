@@ -3,11 +3,13 @@ import random
 import requests
 import json
 import secrets
-from interactions.ext.voice import VoiceState, VoiceClient
+from interactions.ext.lavalink import VoiceState, VoiceClient
 
-bot = interactions.Client(token=secrets.bot_token)
+bot: VoiceClient = VoiceClient(token=secrets.bot_token)
 api_key = secrets.weather_token
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
+
+bot.load("exts.music")
 
 @bot.command(name="randomnumber", description="Get a random number by providing an upper limit")
 @interactions.option()
@@ -49,9 +51,5 @@ async def sourcecode(ctx: interactions.CommandContext):
 @bot.command(name='ping', description='Returns latency of the bot')
 async def ping(ctx: interactions.CommandContext):
     await ctx.send(str(bot.latency) + ' ms')
-
-@bot.command(name="connect", description="Connect this bot to vc")
-async def connect(ctx: CommandContext, channel: Channel):
-    await bot.connect_vc(channel_id=int(channel.id), guild_id=int(ctx.guild_id), self_deaf=True, self_mute=False)
 
 bot.start()
