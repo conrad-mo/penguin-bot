@@ -45,4 +45,8 @@ async def sourcecode(ctx: interactions.CommandContext):
     embed.add_field(name='Github Repository:', value='https://github.com/conrad-mo/penguin-bot', inline=False)
     await ctx.send(embeds=embed)
 
+@bot.command(name='ping', description='Returns latency of the bot')
+async def ping(ctx: interactions.CommandContext):
+    await ctx.send(str(bot.latency) + ' ms')
+
 bot.start()
