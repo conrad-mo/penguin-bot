@@ -39,4 +39,10 @@ async def userimage(ctx: interactions.CommandContext, username:interactions.Memb
     embed.add_field(name="Profile Picture URL", value=f"{username.user.avatar_url}", inline=False)
     await ctx.send(embeds=embed)
 
+@bot.command(name='sourcecode', description='Provides source code for this bot')
+async def sourcecode(ctx: interactions.CommandContext):
+    embed = interactions.Embed(title='Source code for penguin bot')
+    embed.add_field(name='Github Repository:', value='https://github.com/conrad-mo/penguin-bot', inline=False)
+    await ctx.send(embeds=embed)
+
 bot.start()
