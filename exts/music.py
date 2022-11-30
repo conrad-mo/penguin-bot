@@ -28,7 +28,7 @@ class Music(interactions.Extension):
             if len(voice_states) == 1 and voice_states[0].user_id == self.client.me.id:
                 await self.client.disconnect(before.guild_id)
 
-    @interactions.extension_command()
+    @interactions.extension_command(name='play', description="Plays the audio of the first query on youtube given the search query")
     @interactions.option()
     async def play(self, ctx: interactions.CommandContext, query: str):
         await ctx.defer()
@@ -53,11 +53,11 @@ class Music(interactions.Extension):
         await player.play()
         await ctx.send(f"Now playing: `{track.title}`")
 
-    @interactions.extension_command()
+    @interactions.extension_command(name='leave', description="Get's the bot to leave current voice channel")
     async def leave(self, ctx: interactions.CommandContext):
         await self.client.disconnect(ctx.guild_id)
         await ctx.send(f"Disconnected from vc")
-    @interactions.extension_command()
+    @interactions.extension_command(name='connect', description="Connects the bot to the provided voice channel")
     @interactions.option()
     async def connect(self, ctx:interactions.CommandContext, voice_channel: Channel):
         await ctx.send(f"Connected to {voice_channel}")
