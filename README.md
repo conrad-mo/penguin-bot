@@ -7,6 +7,6 @@ Place bot token and openweather api key into a separate python file and import i
 ## Running
 
 ```
-pip install -U discord-py-interactions
+pip install -r requirements.txt
 python bot.py
 ```
